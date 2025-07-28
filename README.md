@@ -1,47 +1,32 @@
 # se-fruits-tips
 Tips journey along the way
 
-URL - regex
-LEVEL 1 - http://example.com atau https://example.com
+# Recon
 
-```^https?:\/\/example\.com$```
+## enum
+```.*\.example\.com$```
 
-Penjelasan:
+```sublist3r -d example.com```
 
-```^``` dan ```$``` memastikan seluruh string cocok.
+```amass enum -passive -d example.com```
 
-```https?``` cocok untuk ```http``` dan ```https```
+```cat example.urls | httprobe -t 1000```
 
-```example\.com``` adalah domain utama
+```w3techs```
 
-LEVEL 2 - api.example.com, www.example.com, dsb.
+```ffuf -u https://FUZZ.example.com/ -w /usr/share/wordlists/dirb/common/txt -p 1 -fc 301```
 
-```^https?:\/\/[\w-]+\.example\.com$```
+```host domain```
 
-Penjelasan:
+```nmap -A -F -T1/2 ipaddress -v```
 
-```[\w-]+``` = satu subdomain (seperti ```api```, ```www```)
-
-```\.``` = titik literal
-
-Jadi cocok hanya satu subdomain
-
-LEVEL 3 - api.example.com, deep.api.example.com, v1.deep.api.example.com, dsb
-
-```^https?:\/\/(?:[\w-]+\.)+example\.com$```
-
-Penjelasan:
-
-```(?:...)``` = non-capturing group
-
-```[\w-]+\.``` = satu subdomain dengan titik
-
-```+``` artinya bisa ada lebih dari satu subdomain
-
-Jadi cocok untuk:
-
-```api.example.com```
-
-```sub.api.example.com```
-
-```deep.sub.api.example.com```
+## Note
+```
+domain.com
+├──sub1.domain.com
+│  ├──Software
+│  │   ├──Recon
+│  │   └──etc
+│  └──etc
+└── sub.subdomain.com
+```

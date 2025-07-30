@@ -33,7 +33,11 @@ domain.com
 
 ## Attack Surface Mapping
 Subdomain aktif	?
+
 Port/web server terbuka	?
+
 Login pages, API, upload ?
+
 Hidden endpoints ?
+
 Version fingerprinting	?

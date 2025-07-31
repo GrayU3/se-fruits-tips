@@ -8,15 +8,21 @@ Tips journey along the way
 
 ```sublist3r -d example.com```
 
-```amass enum -passive -d example.com```
+```amass enum -passive -d example.com | cut -d']' -f 2 | awk '{print $1}' | sort -u > amass.txt``` 
+
+```amass enum -active -d example.com | cut -d']' -f 2 | awk '{print $1}' | sort -u > amass.txt```
+
+```curl -s https://crt.sh\?q\=\domain.com\&output\=json | jq -r '.[].name_value' | grep -Po '(\w+\.\w+\.\w+)$' >crtsh.txt```
 
 ```cat example.urls | httprobe -t 1000```
 
-```w3techs```
+```dnsx -l crtsh.txt -silent -o live_subs.txt```
+
+```cat *.txt | sort -u > final.txt```
 
 ```ffuf -u https://FUZZ.example.com/ -w /usr/share/wordlists/dirb/common/txt -p 1 -fc 301```
 
-```host domain```
+```host domain-name```
 
 ```nmap -A -F -T1/2 ipaddress -v```
 

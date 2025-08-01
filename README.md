@@ -6,31 +6,18 @@ Tips journey along the way
 ## enum
 ```
 .*\.example\.com$
-
 sublist3r -d example.com
-
 subfinder -d example.com -all -recursive -o subfinder.txt
-
 amass enum -passive -d example.com | cut -d']' -f 2 | awk '{print $1}' | sort -u > amass.txt
-
 amass enum -active -d example.com | cut -d']' -f 2 | awk '{print $1}' | sort -u > amass.txt
-
 curl -s https://crt.sh\?q\=\domain.com\&output\=json | jq -r '.[].name_value' | grep -Po '(\w+\.\w+\.\w+)$' >crtsh.txt
-
 cat example.urls | httprobe -t 1000
-
 dnsx -l crtsh.txt -silent -o live_subs.txt
-
 cat *.txt | sort -u > final.txt
-
 ffuf -u https://FUZZ.example.com/ -w /usr/share/wordlists/dirb/common/txt -p 1 -fc 301
-
 host domain-name
-
 curl -s "https://www.virustotal.com/vtapi/v2/domain/report?domain=<DOMAIN>&apikey=[api-key]" | jq -r '.. | .ip_address? // empty' | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}'
 curl -s "https://www.virustotal.com/vtapi/v2/domain/report?domain=<DOMAIN>&apikey=[api-key]" | jq -r '.. | .ip_address? // empty' | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort -u | httpx-toolkit -sc
-
-nmap -A -F -T1/2 ipaddress -v
 ```
 
 ## Note
@@ -56,6 +43,7 @@ Hidden endpoints ?
 Version fingerprinting	?
 
 ```
+nmap -A -F -T1/2 ipaddress -v
 cat urls.txt | hakrawler -u > urls3.txt
 getallurls example.com | sort -u | grep "="
 cat allurls.txt | grep '=' | urldedupe | tee output.txt

@@ -9,6 +9,8 @@ Tips journey along the way
 
 sublist3r -d example.com
 
+subfinder -d example.com -all -recursive -o subfinder.txt
+
 amass enum -passive -d example.com | cut -d']' -f 2 | awk '{print $1}' | sort -u > amass.txt
 
 amass enum -active -d example.com | cut -d']' -f 2 | awk '{print $1}' | sort -u > amass.txt

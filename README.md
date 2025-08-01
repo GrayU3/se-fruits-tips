@@ -12,7 +12,9 @@ Tips journey along the way
 
 ```amass enum -active -d example.com | cut -d']' -f 2 | awk '{print $1}' | sort -u > amass.txt```
 
-```curl -s https://crt.sh\?q\=\domain.com\&output\=json | jq -r '.[].name_value' | grep -Po '(\w+\.\w+\.\w+)$' >crtsh.txt```
+```
+curl -s https://crt.sh\?q\=\domain.com\&output\=json | jq -r '.[].name_value' | grep -Po '(\w+\.\w+\.\w+)$' >crtsh.txt
+```
 
 ```cat example.urls | httprobe -t 1000```
 

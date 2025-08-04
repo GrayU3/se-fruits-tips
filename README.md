@@ -14,7 +14,7 @@ curl -s https://crt.sh\?q\=\domain.com\&output\=json | jq -r '.[].name_value' | 
 cat example.urls | httprobe -t 1000
 dnsx -l crtsh.txt -silent -o live_subs.txt
 cat *.txt | sort -u > final.txt
-cat final.txt | httpx-toolkit > bugfinal.txt
+cat final.txt | httpx-toolkit -silent -mc 200 > bugfinal.txt
 eyewitness -f bugfinal.txt --web --timeout 120 --threads 120 -d screens
 ffuf -u https://FUZZ.example.com/ -w /usr/share/wordlists/dirb/common/txt -p 1 -fc 301
 host domain-name
